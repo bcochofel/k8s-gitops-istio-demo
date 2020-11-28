@@ -1,0 +1,17 @@
+name: Validate Scenarios
+on: [push, pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Validate kustomization
+        uses: stefanprodan/kube-tools@v1
+        with:
+          # https://github.com/fluxcd/flux/blob/master/docker/kubectl.version
+          kubectl: 1.18.9
+          # https://github.com/fluxcd/flux/blob/master/docker/kustomize.version
+          kustomize: 3.8.4
+          command: |
+            echo "Validating kustomize istio-operator scenario..."
+            kustomize build scenarios/istio-operator | kubeval --strict --ignore-missing-schemas
