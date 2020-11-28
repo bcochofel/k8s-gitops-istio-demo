@@ -16,3 +16,8 @@ Most of the manifests use Helm Operator, so you need to have that installed on y
 The scenarios under `kustomize/` use [Kustomize](https://github.com/kubernetes-sigs/kustomize).
 
 The directory `manifests/` uses [Helm Operator](https://github.com/fluxcd/helm-operator).
+
+# Scenarios
+
+- Istio demo profile
+- Istio default profile
