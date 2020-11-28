@@ -5,4 +5,4 @@ metadata:
   name: istio-profile
   namespace: istio-system
 spec:
-  profile: default
+  profile: demo
