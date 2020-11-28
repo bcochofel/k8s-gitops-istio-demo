@@ -13,5 +13,7 @@ jobs:
           # https://github.com/fluxcd/flux/blob/master/docker/kustomize.version
           kustomize: 3.8.4
           command: |
-            echo "Validating kustomize istio-operator scenario..."
-            kustomize build scenarios/istio-operator | kubeval --strict --ignore-missing-schemas
+            echo "Validating kustomize istio-demo scenario..."
+            kustomize build istio-demo | kubeval --strict --ignore-missing-schemas
+            echo "Validating kustomize istio-default scenario..."
+            kustomize build istio-default | kubeval --strict --ignore-missing-schemas

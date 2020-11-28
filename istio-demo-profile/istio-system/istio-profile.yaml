@@ -1,6 +1,7 @@
 apiVersion: install.istio.io/v1alpha1
 kind: IstioOperator
 metadata:
-  name: default-profile
+  name: demo-profile
+  namespace: istio-system
 spec:
-  profile: default
+  profile: demo
