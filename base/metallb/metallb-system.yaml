@@ -11,6 +11,8 @@ spec:
     name: metallb
     version: 1.0.1
   values:
+    prometheus:
+      enabled: true
     configInline: |-
       address-pools:
         - name: default
