@@ -1,5 +1,5 @@
 name: Validate Scenarios
-on: [push, pull_request]
+on: [pull_request]
 jobs:
   validate:
     runs-on: ubuntu-latest
