@@ -6,14 +6,15 @@ metadata:
   namespace: istio-system
 spec:
   profile: demo
-  grafana:
-    enabled: true
-  prometheus:
-    enabled: true
-  tracing:
-    enabled: true
-  kiali:
-    enabled: true
-    createDemoSecret: true
-  certmanager:
-    enabled: false
+  values:
+    grafana:
+      enabled: true
+    prometheus:
+      enabled: true
+    tracing:
+      enabled: true
+    kiali:
+      enabled: true
+      createDemoSecret: true
+    certmanager:
+      enabled: false

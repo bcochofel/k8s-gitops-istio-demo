@@ -6,17 +6,18 @@ metadata:
   namespace: istio-system
 spec:
   profile: default
-  grafana:
-    enabled: false
-  prometheus:
-    enabled: false
-  tracing:
-    enabled: false
-  kiali:
-    enabled: false
-  certmanager:
-    enabled: false
-  global:
-    tracer:
-      zipkin:
-        address: ""
+  values:
+    grafana:
+      enabled: false
+    prometheus:
+      enabled: false
+    tracing:
+      enabled: false
+    kiali:
+      enabled: false
+    certmanager:
+      enabled: false
+    global:
+      tracer:
+        zipkin:
+          address: ""
