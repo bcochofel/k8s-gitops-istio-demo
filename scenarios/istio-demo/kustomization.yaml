@@ -4,6 +4,7 @@ kind: Kustomization
 bases:
   - ../../base/istio-system/
   - ../../base/metallb-system/
+  - ../../base/bookinfo/
 patchesStrategicMerge:
   - istio-operator-patch.yaml
 resources:
