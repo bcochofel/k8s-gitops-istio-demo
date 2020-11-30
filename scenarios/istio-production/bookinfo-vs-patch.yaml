@@ -5,7 +5,8 @@ metadata:
   name: bookinfo
 spec:
   hosts:
-    - "*"
+    - "www.example.com"
+    - "example.com"
   gateways:
     - istio-system/gateway
   http:
