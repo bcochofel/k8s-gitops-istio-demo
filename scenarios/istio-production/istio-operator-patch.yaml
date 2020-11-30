@@ -5,12 +5,9 @@ metadata:
   name: istio-profile
   namespace: istio-system
 spec:
+  hub: docker.io/istio
+  tag: 1.8.0
   profile: default
-  values:
-    global:
-      tracer:
-        zipkin:
-          address: "jaeger-operator-jaeger-collector-headless.jaeger-operator:9411"
   meshConfig:
     accessLogFile: /dev/stdout
     enableTracing: true
@@ -21,6 +18,17 @@ spec:
     ingressGateways:
       - name: istio-ingressgateway
         enabled: true
+        k8s:
+          serviceAnnotations:
+            metallb.universe.tf/address-pool: "production"
+          service:
+            type: LoadBalancer
+            loadBalancerIP: 192.168.77.105
     egressGateways:
       - name: istio-egressgateway
-        enabled: true
+        enabled: false
+  values:
+    global:
+      tracer:
+        zipkin:
+          address: "jaeger-operator-jaeger-collector-headless.jaeger-operator:9411"
