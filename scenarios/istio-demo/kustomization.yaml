@@ -2,13 +2,13 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 bases:
-  - ../../base/istio-system/
-  - ../../base/metallb-system/
-  - ../../base/bookinfo/
+- ../../base/istio-system/
+- ../../base/metallb-system/
+- ../../base/bookinfo/
 patchesStrategicMerge:
-  - istio-operator-patch.yaml
+- istio-operator-patch.yaml
 resources:
-  - https://raw.githubusercontent.com/istio/istio/release-1.8/samples/addons/kiali.yaml
-  - https://raw.githubusercontent.com/istio/istio/release-1.8/samples/addons/grafana.yaml
-  - https://raw.githubusercontent.com/istio/istio/release-1.8/samples/addons/prometheus.yaml
-  - https://raw.githubusercontent.com/istio/istio/release-1.8/samples/addons/jaeger.yaml
+- https://raw.githubusercontent.com/istio/istio/release-1.8/samples/addons/kiali.yaml
+- https://raw.githubusercontent.com/istio/istio/release-1.8/samples/addons/grafana.yaml
+- https://raw.githubusercontent.com/istio/istio/release-1.8/samples/addons/prometheus.yaml
+- https://raw.githubusercontent.com/istio/istio/release-1.8/samples/addons/jaeger.yaml
