@@ -7,16 +7,6 @@ metadata:
 spec:
   profile: default
   values:
-    grafana:
-      enabled: false
-    prometheus:
-      enabled: false
-    tracing:
-      enabled: false
-    kiali:
-      enabled: false
-    certmanager:
-      enabled: false
     global:
       tracer:
         zipkin:
