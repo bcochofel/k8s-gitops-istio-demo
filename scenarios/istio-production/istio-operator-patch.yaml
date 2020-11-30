@@ -20,4 +20,4 @@ spec:
     global:
       tracer:
         zipkin:
-          address: ""
+          address: "jaeger-operator-jaeger-collector-headless.jaeger-operator:9411"
