@@ -22,6 +22,15 @@ spec:
         zipkin:
           address: "jaeger-operator-jaeger-collector-headless.jaeger-operator:9411"
   meshConfig:
+    accessLogFile: /dev/stdout
+    enableTracing: true
     defaultConfig:
       tracing:
         sampling: 50
+  components:
+    ingressGateways:
+      - name: istio-ingressgateway
+        enabled: true
+    egressGateways:
+      - name: istio-egressgateway
+        enabled: true
