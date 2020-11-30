@@ -4,6 +4,7 @@ kind: Kustomization
 bases:
 - ../../base/istio-system/
 - ../../base/metallb-system/
+- ../../base/cert-manager/
 - ../../base/jaeger/
 - ../../base/bookinfo/
 patchesStrategicMerge:
