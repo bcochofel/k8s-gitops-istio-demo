@@ -9,3 +9,23 @@ spec:
     cr:
       create: false
       name: kiali
+      namespace: "istio-system"
+      spec:
+        auth:
+          strategy: "anonymous"
+        deployment:
+          accessible_namespaces:
+            - '**'
+          external_services:
+            tracing:
+              enabled: true
+              in_cluster_url: "jaeger-operator-jaeger-query.jaeger-operator:16686"
+              url: "https://tracing.demo.lab"
+            grafana:
+              enabled: true
+              in_cluster_url: "kube-prometheus-stack-grafana.monitoring:80"
+              url: "https://grafana.demo.lab"
+            prometheus:
+              enabled: true
+              in_cluster_url: "prometheus-operated.monitoring:9090"
+              url: "https://prometheus.demo.lab"
