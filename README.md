@@ -19,5 +19,33 @@ The directory `manifests/` uses [Helm Operator](https://github.com/fluxcd/helm-o
 
 # Scenarios
 
-- Istio demo profile
-- Istio default profile
+- Istio demo (uses istio demo profile)
+- Istio production (uses default profile)
+
+## Istio Production
+
+This scenario uses the [Istio Integrations](https://istio.io/latest/docs/ops/integrations/).
+
+Uses cert-manager Self Signed Issuer and Certificate for all the `demo.lab` addresses.
+
+Add to following to your hosts file:
+
+```
+192.168.77.105	demo.lab www.demo.lab
+192.168.77.105  bookinfo.demo.lab
+192.168.77.105  grafana.demo.lab
+192.168.77.105  alertmanager.demo.lab
+192.168.77.105  prometheus.demo.lab
+192.168.77.105  istio-prometheus.demo.lab
+192.168.77.105  kiali.demo.lab
+192.168.77.105  tracing.demo.lab
+```
+
+You can use those addresses to connect to the components on this scenario.
+
+Prometheus is deployed using the new Prometheus Operator [chart](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack).
+
+[Observability Best Practices](https://istio.io/latest/docs/ops/best-practices/observability/) are implemented using another Prometheus instance to scrape metrics from Istio.
+The Prometheus instances use labels (tier=cluster and tier=istio) to separate the scrape and rules for each scope.
+
+You can use [this repo](https://github.com/bcochofel/terraform-modules) to deploy both Istio and Flux using Terraform (`examples` folder)
