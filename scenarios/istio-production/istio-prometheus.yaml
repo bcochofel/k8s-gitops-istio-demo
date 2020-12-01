@@ -32,6 +32,7 @@ spec:
       - name: alertmanager-operated
         namespace: monitoring
         port: web
+  externalUrl: http://istio-prometheus.demo.lab
   enableAdminAPI: false
   scrapeInterval: 15s
   scrapeTimeout: 10s

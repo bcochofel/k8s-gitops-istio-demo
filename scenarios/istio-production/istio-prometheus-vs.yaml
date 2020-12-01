@@ -1,0 +1,20 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: istio-prometheus-vs
+  namespace: istio-system
+spec:
+  gateways:
+    - istio-system/gateway
+  hosts:
+    - istio-prometheus.demo.lab
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            port:
+              number: 9090
+            host: prometheus-operated.istio-system.svc.cluster.local

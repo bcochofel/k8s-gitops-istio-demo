@@ -14,8 +14,16 @@ spec:
       enabled: false
     kubeProxy:
       enabled: false
+    grafana:
+      grafana.ini:
+        server:
+          root_url: http://grafana.demo.lab
+    alertmanager:
+      alertmanagerSpec:
+        externalUrl: http://alertmanager.demo.lab
     prometheus:
       prometheusSpec:
+        externalUrl: http://prometheus.demo.lab
         scrapeInterval: 15s
         scrapeTimeout: 10s
         evaluationInterval: 15s
