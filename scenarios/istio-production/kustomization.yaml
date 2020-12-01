@@ -5,6 +5,7 @@ bases:
 - ../../base/istio-system/
 - ../../base/metallb-system/
 - ../../base/cert-manager/
+- ../../base/monitoring/
 - ../../base/jaeger/
 - ../../base/bookinfo/
 resources:
