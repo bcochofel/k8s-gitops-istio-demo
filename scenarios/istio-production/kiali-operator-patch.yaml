@@ -1,0 +1,12 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: kiali-operator
+  namespace: kiali-operator
+spec:
+  values:
+    cr:
+      create: true
+      name: kiali
+      namespace: ""
