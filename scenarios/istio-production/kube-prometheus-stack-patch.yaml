@@ -31,7 +31,7 @@ spec:
           providers:
           - name: 'istio'
             orgId: 1
-            folder: ''
+            folder: 'Istio'
             type: file
             disableDeletion: false
             editable: true
@@ -42,18 +42,23 @@ spec:
           istio-mesh:
             gnetId: 7639
             revision: 43
+            datasource: default
           istio-service:
             gnetId: 7636
             revision: 43
+            datasource: default
           istio-workload:
             gnetId: 7630
             revision: 43
+            datasource: default
           istio-performance:
             gnetId: 11829
             revision: 43
+            datasource: default
           istio-control-plane:
             gnetId: 7645
             revision: 43
+            datasource: default
     alertmanager:
       alertmanagerSpec:
         externalUrl: http://alertmanager.demo.lab
