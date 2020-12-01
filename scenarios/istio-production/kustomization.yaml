@@ -13,5 +13,6 @@ resources:
 patchesStrategicMerge:
 - istio-operator-patch.yaml
 - metallb-patch.yaml
+- kube-prometheus-stack-patch.yaml
 - jaeger-operator-patch.yaml
 - bookinfo-vs-patch.yaml

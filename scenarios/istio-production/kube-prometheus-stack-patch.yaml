@@ -1,0 +1,32 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: kube-prometheus-stack
+  namespace: monitoring
+spec:
+  values:
+    kubeControllerManager:
+      enabled: true
+      serviceMonitor:
+        https: true
+    kubeScheduler:
+      enabled: true
+      serviceMonitor:
+        https: true
+    kubeProxy:
+      enabled: true
+      serviceMonitor:
+        https: true
+    prometheus:
+      prometheusSpec:
+        scrapeInterval: 15s
+        scrapeTimeout: 10s
+        evaluationInterval: 15s
+        retention: 6h
+        ruleSelector:
+          matchLabels:
+            tier: cluster
+        serviceMonitorSelector:
+          matchLabels:
+            tier: cluster
