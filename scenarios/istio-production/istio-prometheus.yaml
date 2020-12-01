@@ -141,3 +141,108 @@ spec:
     app: prometheus
   sessionAffinity: None
   type: ClusterIP
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: istio-metrics-aggregation
+  namespace: istio-system
+  labels:
+    app.kubernetes.io/name: istio-prometheus
+    app: prometheus
+    tier: istio
+spec:
+  groups:
+    - name: "istio.metricsAggregation-rules"
+      interval: 5s
+      rules:
+        - record: "workload:istio_requests_total"
+          expr: "sum without(instance, namespace, pod) (istio_requests_total)"
+
+        - record: "workload:istio_request_duration_milliseconds_count"
+          expr: "sum without(instance, namespace, pod) (istio_request_duration_milliseconds_count)"
+        - record: "workload:istio_request_duration_milliseconds_sum"
+          expr: "sum without(instance, namespace, pod) (istio_request_duration_milliseconds_sum)"
+        - record: "workload:istio_request_duration_milliseconds_bucket"
+          expr: "sum without(instance, namespace, pod) (istio_request_duration_milliseconds_bucket)"
+
+        - record: "workload:istio_request_bytes_count"
+          expr: "sum without(instance, namespace, pod) (istio_request_bytes_count)"
+        - record: "workload:istio_request_bytes_sum"
+          expr: "sum without(instance, namespace, pod) (istio_request_bytes_sum)"
+        - record: "workload:istio_request_bytes_bucket"
+          expr: "sum without(instance, namespace, pod) (istio_request_bytes_bucket)"
+
+        - record: "workload:istio_response_bytes_count"
+          expr: "sum without(instance, namespace, pod) (istio_response_bytes_count)"
+        - record: "workload:istio_response_bytes_sum"
+          expr: "sum without(instance, namespace, pod) (istio_response_bytes_sum)"
+        - record: "workload:istio_response_bytes_bucket"
+          expr: "sum without(instance, namespace, pod) (istio_response_bytes_bucket)"
+
+        - record: "workload:istio_tcp_connections_opened_total"
+          expr: "sum without(instance, namespace, pod) (istio_tcp_connections_opened_total)"
+        - record: "workload:istio_tcp_connections_closed_total"
+          expr: "sum without(instance, namespace, pod) (istio_tcp_connections_closed_total)"
+
+        - record: "workload:istio_tcp_sent_bytes_total_count"
+          expr: "sum without(instance, namespace, pod) (istio_tcp_sent_bytes_total_count)"
+        - record: "workload:istio_tcp_sent_bytes_total_sum"
+          expr: "sum without(instance, namespace, pod) (istio_tcp_sent_bytes_total_sum)"
+        - record: "workload:istio_tcp_sent_bytes_total_bucket"
+          expr: "sum without(instance, namespace, pod) (istio_tcp_sent_bytes_total_bucket)"
+
+        - record: "workload:istio_tcp_received_bytes_total_count"
+          expr: "sum without(instance, namespace, pod) (istio_tcp_received_bytes_total_count)"
+        - record: "workload:istio_tcp_received_bytes_total_sum"
+          expr: "sum without(instance, namespace, pod) (istio_tcp_received_bytes_total_sum)"
+        - record: "workload:istio_tcp_received_bytes_total_bucket"
+          expr: "sum without(instance, namespace, pod) (istio_tcp_received_bytes_total_bucket)"
+
+    - name: "istio.alerts-rules"
+      interval: 5s
+      rules:
+        - alert: IstioGlobalRequestRateHigh
+          annotations:
+            message: 'Istio global request rate is unusually high during the last 5m (current value: *{{ printf "%2.0f%%" $value }}*). The amount of traffic being generated inside the service mesh is higher than normal'
+          expr: >
+            round(sum(irate(istio_requests_total{reporter="destination"}[5m])), 0.001) > 1200
+          for: 5m
+          labels:
+            severity: warning
+
+        - alert: IstioGlobalRequestRateLow
+          annotations:
+            message: 'Istio global request rate is unusually low during the last 5m (current value: *{{ printf "%2.0f%%" $value }}*). The amount of traffic being generated inside the service mesh has dropped below usual levels'
+          expr: >
+            round(sum(irate(istio_requests_total{reporter="destination"}[5m])), 0.001) < 300
+          for: 5m
+          labels:
+            severity: warning
+
+        - alert: IstioGlobalHTTP5xxRateHigh
+          annotations:
+            message: 'Istio global HTTP 5xx rate is too high in last 5m (current value: *{{ printf "%2.0f%%" $value }}*). The HTTP 5xx errors within the service mesh is unusually high'
+          expr: >
+            sum(irate(istio_requests_total{reporter="destination", response_code=~"5.*"}[5m])) / sum(irate(istio_requests_total{reporter="destination"}[5m])) > 0.01
+          for: 5m
+          labels:
+            severity: warning
+
+        - alert: IstioGatewayOutgoingSuccessLow
+          annotations:
+            message: 'Istio Gateway success to outbound destinations is too low in last 5m (current value: *{{ printf "%2.0f%%" $value }}*). Inbound traffic may be affected'
+          expr: >
+            sum(irate(istio_requests_total{reporter="source", source_workload="istio-ingressgateway",source_workload_namespace="istio-system", connection_security_policy!="mutual_tls",response_code!~"5.*"}[5m])) /  sum(irate(istio_requests_total{reporter="source", source_workload="istio-ingressgateway",source_workload_namespace="istio-system", connection_security_policy!="mutual_tls"}[5m])) < 0.995
+          for: 5m
+          labels:
+            severity: warning
+
+        - alert: IstioCustomGatewayOutgoingSuccessLow
+          annotations:
+            message: 'Istio Custom Gateway success to outbound destinations is too low in last 5m (current value: *{{ printf "%2.0f%%" $value }}*). Inbound traffic may be affected'
+          expr: >
+            sum(irate(istio_requests_total{reporter="source", source_workload="gateway",source_workload_namespace="istio-system", connection_security_policy!="mutual_tls",response_code!~"5.*"}[5m])) /  sum(irate(istio_requests_total{reporter="source", source_workload="istio-ingressgateway",source_workload_namespace="istio-system", connection_security_policy!="mutual_tls"}[5m])) < 0.995
+          for: 5m
+          labels:
+            severity: warning
