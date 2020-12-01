@@ -16,11 +16,11 @@ resources:
 - prometheus-vs.yaml
 - istio-prometheus-vs.yaml
 - alertmanager-vs.yaml
+- flux-prometheus.yaml
+- helm-operator-prometheus.yaml
 patchesStrategicMerge:
 - istio-operator-patch.yaml
 - metallb-patch.yaml
 - kube-prometheus-stack-patch.yaml
 - jaeger-operator-patch.yaml
 - bookinfo-vs-patch.yaml
-- flux-prometheus.yaml
-- helm-operator-prometheus.yaml
