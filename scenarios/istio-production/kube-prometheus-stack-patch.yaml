@@ -18,6 +18,7 @@ spec:
       grafana.ini:
         server:
           root_url: http://grafana.demo.lab
+      # https://github.com/grafana/helm-charts/blob/main/charts/grafana/values.yaml
       additionalDataSources:
       - name: Jaeger
         type: jaeger
