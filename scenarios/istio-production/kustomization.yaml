@@ -20,6 +20,7 @@ resources:
 - flux-prometheus.yaml
 - helm-operator-prometheus.yaml
 - tracing-vs.yaml
+- kiali-vs.yaml
 patchesStrategicMerge:
 - istio-operator-patch.yaml
 - metallb-patch.yaml
