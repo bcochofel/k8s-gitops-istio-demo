@@ -4,14 +4,13 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
       - name: Validate kustomization
         uses: stefanprodan/kube-tools@v1
         with:
-          # https://github.com/fluxcd/flux/blob/master/docker/kubectl.version
           kubectl: 1.18.9
-          # https://github.com/fluxcd/flux/blob/master/docker/kustomize.version
           kustomize: 3.8.4
+          helmv3: 3.2.1
           command: |
             echo "Validating kustomize istio-demo scenario..."
             kustomize build scenarios/istio-demo | kubeval --strict --ignore-missing-schemas

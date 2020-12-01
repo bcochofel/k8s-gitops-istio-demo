@@ -9,8 +9,13 @@ spec:
   duration: 2160h # 90d
   renewBefore: 360h # 15d
   dnsNames:
-    - example.com
-    - www.example.com
+    - "demo.lab"
+    - "www.demo.lab"
+    - "bookinfo.demo.lab"
+    - "grafana.demo.lab"
+    - "prometheus.demo.lab"
+    - "kiali.demo.lab"
+    - "tracing.demo.lab"
   # Issuer references are always required.
   issuerRef:
     name: selfsigned-issuer
