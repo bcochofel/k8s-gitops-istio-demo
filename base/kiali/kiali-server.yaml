@@ -7,5 +7,6 @@ metadata:
 spec:
   releaseName: kiali-server
   chart:
-    repository: https://kiali.org/helm-charts
-    name: kiali-server
+    git: https://github.com/kiali/helm-charts
+    ref: master
+    path: kiali-server
