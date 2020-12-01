@@ -18,6 +18,7 @@ resources:
 - alertmanager-vs.yaml
 - flux-prometheus.yaml
 - helm-operator-prometheus.yaml
+- tracing-vs.yaml
 patchesStrategicMerge:
 - istio-operator-patch.yaml
 - metallb-patch.yaml

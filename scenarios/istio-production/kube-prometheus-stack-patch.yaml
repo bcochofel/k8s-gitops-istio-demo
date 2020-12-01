@@ -18,6 +18,29 @@ spec:
       grafana.ini:
         server:
           root_url: http://grafana.demo.lab
+      additionalDataSources:
+      - name: Jaeger
+        type: jaeger
+        access: proxy
+        uid: jaeger_ds
+        url: http://jaeger-operator-jaeger-query.jaeger-operator:16686
+      dashboards:
+        default:
+          istio-mesh:
+            gnetId: 7639
+            revision: 43
+          istio-service:
+            gnetId: 7636
+            revision: 43
+          istio-workload:
+            gnetId: 7630
+            revision: 43
+          istio-performance:
+            gnetId: 11829
+            revision: 43
+          istio-control-plane:
+            gnetId: 7645
+            revision: 43
     alertmanager:
       alertmanagerSpec:
         externalUrl: http://alertmanager.demo.lab
