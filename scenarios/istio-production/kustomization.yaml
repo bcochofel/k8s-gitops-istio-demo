@@ -25,5 +25,5 @@ patchesStrategicMerge:
 - metallb-patch.yaml
 - kube-prometheus-stack-patch.yaml
 - jaeger-operator-patch.yaml
-- kiali-server-patch.yaml
+- kiali-operator-patch.yaml
 - bookinfo-vs-patch.yaml
