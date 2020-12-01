@@ -9,17 +9,9 @@ spec:
     commonLabels:
       tier: cluster
     kubeControllerManager:
-      enabled: true
-      serviceMonitor:
-        https: true
+      enabled: false
     kubeScheduler:
-      enabled: true
-      serviceMonitor:
-        https: true
-    kubeProxy:
-      enabled: true
-      serviceMonitor:
-        https: true
+      enabled: false
     prometheus:
       prometheusSpec:
         scrapeInterval: 15s
