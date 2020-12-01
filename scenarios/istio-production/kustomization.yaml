@@ -12,6 +12,10 @@ resources:
 - gateway.yaml
 - istio-prometheus.yaml
 - prometheus-istio-federation.yaml
+- grafana-vs.yaml
+- prometheus-vs.yaml
+- istio-prometheus-vs.yaml
+- alertmanager-vs.yaml
 patchesStrategicMerge:
 - istio-operator-patch.yaml
 - metallb-patch.yaml

@@ -14,6 +14,7 @@ spec:
     - "bookinfo.demo.lab"
     - "grafana.demo.lab"
     - "prometheus.demo.lab"
+    - "istio-prometheus.demo.lab"
     - "kiali.demo.lab"
     - "tracing.demo.lab"
   # Issuer references are always required.
