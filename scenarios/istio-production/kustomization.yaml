@@ -22,3 +22,5 @@ patchesStrategicMerge:
 - kube-prometheus-stack-patch.yaml
 - jaeger-operator-patch.yaml
 - bookinfo-vs-patch.yaml
+- flux-prometheus.yaml
+- helm-operator-prometheus.yaml

@@ -6,6 +6,7 @@ metadata:
 spec:
   hosts:
     - "demo.lab"
+    - "www.demo.lab"
     - "bookinfo.demo.lab"
   gateways:
     - istio-system/gateway

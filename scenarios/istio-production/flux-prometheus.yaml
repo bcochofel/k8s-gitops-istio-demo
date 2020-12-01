@@ -1,0 +1,48 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: flux
+  namespace: fluxcd
+  labels:
+    app: flux
+    release: flux
+    tier: cluster
+spec:
+  endpoints:
+    - port: http
+      honorLabels: true
+  namespaceSelector:
+    matchNames:
+      - flux
+  selector:
+    matchLabels:
+      app: flux
+      release: flux
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  labels:
+    app: prometheus
+    tier: cluster
+  name: flux-rules
+  namespace: fluxcd
+spec:
+  groups:
+    - name: flux.rules
+      rules:
+        - alert: FluxSyncErrors
+          annotations:
+            message: 'General flux sync errors. There are some problems with infrastructure or there are manifests parse error or there are manifests with duplicate ids.'
+          expr: delta(flux_daemon_sync_duration_seconds_count{success='true'}[10m]) < 1
+          for: 15m
+          labels:
+            severity: warning
+        - alert: FluxManifestErrors
+          annotations:
+            message: 'There are either some problems with applying git manifests to kubernetes or immutable field (like label selector) was changed.'
+          expr: flux_daemon_sync_manifests{success='false'} > 0
+          for: 15m
+          labels:
+            severity: warning
