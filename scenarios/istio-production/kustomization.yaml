@@ -11,6 +11,7 @@ bases:
 resources:
 - gateway.yaml
 - istio-prometheus.yaml
+- prometheus-istio-federation.yaml
 patchesStrategicMerge:
 - istio-operator-patch.yaml
 - metallb-patch.yaml
