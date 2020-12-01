@@ -15,6 +15,15 @@ spec:
     kubeProxy:
       enabled: false
     grafana:
+      podLabels:
+        app: grafana
+      service:
+        labels:
+          app: grafana
+      serviceMonitor:
+        enabled: true
+        labels:
+          tier: cluster
       grafana.ini:
         server:
           root_url: http://grafana.demo.lab
