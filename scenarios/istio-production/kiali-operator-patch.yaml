@@ -11,36 +11,64 @@ spec:
       name: kiali
       namespace: "istio-system"
       spec:
-        istio_component_namespaces:
-          prometheus: monitoring
-          tracing: jaeger-operator
-          grafana: monitoring
         auth:
           strategy: "anonymous"
         deployment:
           accessible_namespaces:
             - '**'
           external_services:
-            custom_dashboards:
-              prometheus:
-                url: "http://prometheus-operated.monitoring:9090"
-              namespace_label: kubernetes_namespace
-            tracing:
-              enabled: true
-              auth:
-                insecure_skip_verify: true
-                type: "none"
-              in_cluster_url: "http://jaeger-operator-jaeger-query.jaeger-operator:16686"
-              url: "https://tracing.demo.lab"
+            istio:
+              component_status:
+                enabled: true
+                components:
+                - app_label: istiod
+                  is_core: true
+                - app_label: istio-ingressgateway
+                  is_core: true
+                - app_label: istio-egressgateway
+                  is_core: false
+              config_map_name: "istio"
+              istio_identity_domain: "svc.cluster.local"
+              istio_injection_annotation: "sidecar.istio.io/inject"
+              istio_sidecar_annotation: "sidecar.istio.io/status"
+              url_service_version: ""
             grafana:
               enabled: true
               auth:
                 insecure_skip_verify: true
                 type: "none"
+              component_status:
+                app_label: "grafana"
+                is_core: false
+                namespace: "monitoring"
+              dashboards:
+              - name: "Istio Service Dashboard"
+                variables:
+                  namespace: "var-namespace"
+                  service: "var-service"
+              - name: "Istio Workload Dashboard"
+                variables:
+                  namespace: "var-namespace"
+                  workload: "var-workload"
               in_cluster_url: "http://kube-prometheus-stack-grafana.monitoring:80"
-              url: "https://grafana.demo.lab"
+              url: ""
             prometheus:
               auth:
                 insecure_skip_verify: true
                 type: "none"
+              component_status:
+                app_label: "prometheus"
+                is_core: true
+                namespace: "monitoring"
               url: "http://prometheus-operated.monitoring:9090"
+            tracing:
+              enabled: true
+              auth:
+                insecure_skip_verify: true
+                type: "none"
+              component_status:
+                app_label: "jaeger"
+                is_core: true
+                namespace: "jaeger-operator"
+              in_cluster_url: "http://jaeger-operator-jaeger-query.jaeger-operator:16686"
+              url: ""
