@@ -1,0 +1,20 @@
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: tracing-vs
+  namespace: jaeger-operator
+spec:
+  gateways:
+    - istio-system/gateway
+  hosts:
+    - tracing.demo.lab
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            port:
+              number: 16686
+            host: jaeger-operator-jaeger-query.jaeger-operator.svc.cluster.local
