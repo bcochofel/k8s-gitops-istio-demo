@@ -11,6 +11,7 @@ spec:
       name: kiali
       namespace: "istio-system"
       spec:
+        # https://github.com/kiali/kiali-operator/blob/master/deploy/kiali/kiali_cr.yaml
         auth:
           strategy: "anonymous"
         deployment:
