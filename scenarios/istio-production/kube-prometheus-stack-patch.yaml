@@ -6,6 +6,8 @@ metadata:
   namespace: monitoring
 spec:
   values:
+    commonLabels:
+      tier: cluster
     kubeControllerManager:
       enabled: true
       serviceMonitor:
