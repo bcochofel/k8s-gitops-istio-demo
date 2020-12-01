@@ -51,7 +51,7 @@ spec:
                   namespace: "var-namespace"
                   workload: "var-workload"
               in_cluster_url: "http://kube-prometheus-stack-grafana.monitoring:80"
-              url: ""
+              url: "http://kube-prometheus-stack-grafana.monitoring:80"
             prometheus:
               auth:
                 insecure_skip_verify: true
@@ -71,4 +71,4 @@ spec:
                 is_core: true
                 namespace: "jaeger-operator"
               in_cluster_url: "http://jaeger-operator-jaeger-query.jaeger-operator:16686"
-              url: ""
+              url: "http://jaeger-operator-jaeger-query.jaeger-operator:16686"
