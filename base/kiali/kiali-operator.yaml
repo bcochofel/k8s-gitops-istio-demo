@@ -1,0 +1,12 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: kiali-operator
+  namespace: kiali-operator
+spec:
+  releaseName: kiali-operator
+  chart:
+    repository: https://kiali.org/helm-charts
+    name: kiali-operator
+    version: 1.27.0
