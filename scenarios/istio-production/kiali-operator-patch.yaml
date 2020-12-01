@@ -55,12 +55,11 @@ spec:
               dashboards:
                 - name: "Istio Service Dashboard"
                   variables:
-                    namespace: "var-namespace"
-                    service: "var-service"
+                    service: "service"
                 - name: "Istio Workload Dashboard"
                   variables:
-                    namespace: "var-namespace"
-                    workload: "var-workload"
+                    namespace: "namespace"
+                    workload: "workload"
               in_cluster_url: "http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:80"
               url: "https://grafana.demo.lab"
             tracing:
