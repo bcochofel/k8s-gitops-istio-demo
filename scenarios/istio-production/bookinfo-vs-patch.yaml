@@ -5,12 +5,14 @@ metadata:
   name: bookinfo
 spec:
   hosts:
-    - "www.example.com"
-    - "example.com"
+    - "demo.lab"
+    - "bookinfo.demo.lab"
   gateways:
     - istio-system/gateway
   http:
     - match:
+        - uri:
+            exact: /
         - uri:
             exact: /productpage
         - uri:

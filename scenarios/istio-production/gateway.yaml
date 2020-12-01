@@ -9,8 +9,13 @@ spec:
     istio: ingressgateway
   servers:
     - hosts:
-        - "example.com"
-        - "www.example.com"
+        - "demo.lab"
+        - "www.demo.lab"
+        - "bookinfo.demo.lab"
+        - "grafana.demo.lab"
+        - "prometheus.demo.lab"
+        - "kiali.demo.lab"
+        - "tracing.demo.lab"
       port:
         name: http
         number: 80
@@ -18,8 +23,13 @@ spec:
       tls:
         httpsRedirect: true
     - hosts:
-        - "example.com" # This should match a DNS name in the Certificate
-        - "www.example.com"
+        - "demo.lab"
+        - "www.demo.lab"
+        - "bookinfo.demo.lab"
+        - "grafana.demo.lab"
+        - "prometheus.demo.lab"
+        - "kiali.demo.lab"
+        - "tracing.demo.lab"
       port:
         number: 443
         name: https
