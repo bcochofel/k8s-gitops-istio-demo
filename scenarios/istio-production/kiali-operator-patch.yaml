@@ -11,12 +11,20 @@ spec:
       name: kiali
       namespace: "istio-system"
       spec:
+        istio_component_namespaces:
+          prometheus: monitoring
+          tracing: jaeger-operator
+          grafana: monitoring
         auth:
           strategy: "anonymous"
         deployment:
           accessible_namespaces:
             - '**'
           external_services:
+            custom_dashboards:
+              prometheus:
+                url: "http://prometheus-operated.monitoring:9090"
+              namespace_label: kubernetes_namespace
             tracing:
               enabled: true
               auth:
