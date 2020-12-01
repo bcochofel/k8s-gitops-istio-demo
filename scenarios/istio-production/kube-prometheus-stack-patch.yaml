@@ -24,8 +24,20 @@ spec:
         access: proxy
         uid: jaeger_ds
         url: http://jaeger-operator-jaeger-query.jaeger-operator:16686
+      dashboardProviders: {}
+        dashboardproviders.yaml:
+          apiVersion: 1
+          providers:
+          - name: 'istio'
+            orgId: 1
+            folder: ''
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/istio
       dashboards:
-        default:
+        istio:
           istio-mesh:
             gnetId: 7639
             revision: 43
