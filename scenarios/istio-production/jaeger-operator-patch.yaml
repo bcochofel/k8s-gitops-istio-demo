@@ -5,11 +5,6 @@ metadata:
   name: jaeger-operator
   namespace: jaeger-operator
 spec:
-  releaseName: jaeger-operator
-  chart:
-    repository: https://jaegertracing.github.io/helm-charts
-    name: jaeger-operator
-    version: 2.17.0
   values:
     jaeger:
       create: true
