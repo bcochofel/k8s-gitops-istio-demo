@@ -40,29 +40,11 @@ spec:
             url_service_version: ""
           prometheus:
             url: "http://prometheus.istio-system.svc.cluster.local:9090"
-            component_status:
-              app_label: "prometheus"
-              is_core: true
-              namespace: "istio-system"
           grafana:
-            enabled: true
+            enabled: false
             auth:
               insecure_skip_verify: true
-              type: "basic"
-              username: "admin"
-              password: "prom-operator"
-            component_status:
-              app_label: "grafana"
-              is_core: false
-              namespace: "monitoring"
-            dashboards:
-              - name: "Istio Service Dashboard"
-                variables:
-                  service: "service"
-              - name: "Istio Workload Dashboard"
-                variables:
-                  namespace: "namespace"
-                  workload: "workload"
+              type: "none"
             in_cluster_url: "http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:80"
             url: "https://grafana.demo.lab"
           tracing:
@@ -70,9 +52,5 @@ spec:
             auth:
               insecure_skip_verify: true
               type: "none"
-            component_status:
-              app_label: "jaeger"
-              is_core: true
-              namespace: "jaeger-operator"
             in_cluster_url: "http://jaeger-operator-jaeger-query.jaeger-operator.svc.cluster.local:16686"
             url: "https://tracing.demo.lab"
