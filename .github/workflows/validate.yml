@@ -13,6 +13,6 @@ jobs:
           helmv3: 3.2.1
           command: |
             echo "Validating kustomize istio-demo scenario..."
-            kustomize build scenarios/istio-demo | kubeval --strict --ignore-missing-schemas
+            #kustomize build scenarios/istio-demo | kubeval --strict --ignore-missing-schemas
             echo "Validating kustomize istio-default scenario..."
-            kustomize build scenarios/istio-production | kubeval --strict --ignore-missing-schemas
+            #kustomize build scenarios/istio-production | kubeval --strict --ignore-missing-schemas
