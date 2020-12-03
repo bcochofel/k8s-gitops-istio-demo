@@ -17,10 +17,6 @@ spec:
         deployment:
           accessible_namespaces:
             - '**'
-        istio_component_namespaces:
-          prometheus: istio-system
-          grafana: monitoring
-          tracing: jaeger-operator
         istio_namespace: istio-system
         external_services:
           istio:
