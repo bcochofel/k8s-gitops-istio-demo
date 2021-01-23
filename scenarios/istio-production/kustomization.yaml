@@ -11,14 +11,23 @@ bases:
 - ../../base/bookinfo/
 resources:
 - gateway.yaml
+- istio-prometheus-sa.yaml
+- istio-prometheus-crb.yaml
 - istio-prometheus.yaml
+- istio-prometheus-servicemonitor1.yaml
+- istio-prometheus-servicemonitor2.yaml
+- istio-prometheus-servicemonitor3.yaml
+- istio-prometheus-service.yaml
+- istio-prometheus-rules.yaml
 - prometheus-istio-federation.yaml
 - grafana-vs.yaml
 - prometheus-vs.yaml
 - istio-prometheus-vs.yaml
 - alertmanager-vs.yaml
-- flux-prometheus.yaml
-- helm-operator-prometheus.yaml
+- flux-prometheus-servicemonitor.yaml
+- flux-prometheus-rules.yaml
+- helm-operator-prometheus-servicemonitor.yaml
+- helm-operator-prometheus-rules.yaml
 - tracing-vs.yaml
 - kiali-vs.yaml
 patchesStrategicMerge:
