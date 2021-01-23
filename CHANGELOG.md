@@ -7,6 +7,9 @@
 ### Feat
 - first release
 
+### Fix
+- istio-demo scenario
+
 
 <a name="flux-sync"></a>
 ## flux-sync - 2021-01-23
