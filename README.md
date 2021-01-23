@@ -1,15 +1,17 @@
 # k8s-gitops-istio-demo
 
-[![Validate Scenarios](https://github.com/bcochofel/k8s-gitops-istio-demo/workflows/Validate%20Scenarios/badge.svg)](https://github.com/bcochofel/k8s-gitops-istio-demo/blob/master/.github/workflows/validate.yml)
-[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
-[![GitHub license](https://img.shields.io/github/license/bcochofel/k8s-gitops-istio-demo.svg)](https://github.com/bcochofel/k8s-gitops-istio-demo/blob/master/LICENSE)
-[![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/bcochofel/k8s-gitops-istio-demo)](https://github.com/bcochofel/k8s-gitops-istio-demo/tags)
-[![GitHub issues](https://img.shields.io/github/issues/bcochofel/k8s-gitops-istio-demo.svg)](https://github.com/bcochofel/k8s-gitops-istio-demo/issues/)
-[![GitHub forks](https://img.shields.io/github/forks/bcochofel/k8s-gitops-istio-demo.svg?style=social&label=Fork&maxAge=2592000)](https://github.com/bcochofel/k8s-gitops-istio-demo/network/)
-[![GitHub stars](https://img.shields.io/github/stars/bcochofel/k8s-gitops-istio-demo.svg?style=social&label=Star&maxAge=2592000)](https://github.com/bcochofel/k8s-gitops-istio-demo/stargazers/)
+[![pre-commit badge][pre-commit-badge]][pre-commit] [![Conventional commits badge][conventional-commits-badge]][conventional-commits] [![Keep a Changelog v1.1.0 badge][keep-a-changelog-badge]][keep-a-changelog] [![MIT License Badge][license-badge]][license]
 
 Kubernetes manifests that can be used with GitOps.
 Most of the manifests use Helm Operator, so you need to have that installed on your cluster.
+
+# pre-commit hooks
+
+Read the [pre-commit hooks](docs/pre-commit-hooks.md) document for more info.
+
+# git-chglog
+
+Read the [git-chglog](docs/git-chlog.md) document for more info.
 
 ## Requirements
 
@@ -49,3 +51,14 @@ Prometheus is deployed using the new Prometheus Operator [chart](https://github.
 The Prometheus instances use labels (tier=cluster and tier=istio) to separate the scrape and rules for each scope.
 
 You can use [this repo](https://github.com/bcochofel/terraform-modules) to deploy both Istio and Flux using Terraform (`examples` folder)
+
+[pre-commit]: https://github.com/pre-commit/pre-commit
+[pre-commit-badge]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
+[conventional-commits-badge]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-green.svg
+[conventional-commits]: https://conventionalcommits.org
+[keep-a-changelog-badge]: https://img.shields.io/badge/changelog-Keep%20a%20Changelog%20v1.1.0-%23E05735
+[keep-a-changelog]: https://keepachangelog.com/en/1.0.0/
+[license]: ./LICENSE
+[license-badge]: https://img.shields.io/badge/license-MIT-green.svg
+[changelog]: ./CHANGELOG.md
+[changelog-badge]: https://img.shields.io/badge/changelog-Keep%20a%20Changelog%20v1.1.0-%23E05735
